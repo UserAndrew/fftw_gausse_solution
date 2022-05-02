@@ -66,10 +66,12 @@ int main()
     std::vector<std::complex<double>> fftw_data_and_bias;
     double bias = (Xmax-Xmin)/2.;
     const std::complex<double> I(0, 1);
+    double omega = Xmin;
     for(int i = 0; i < N; i++)
     {
         std::complex<double> x(out[i][0]/sqrt(2*M_PI*N), out[0][i]/sqrt(2*M_PI*N));
-        fftw_data_and_bias.push_back(x*std::exp((-1.)*I*x*bias));
+        fftw_data_and_bias.push_back(x*std::exp((-1.)*I*omega*bias));
+        omega += h;
     }
     std::vector<std::complex<double>> coord_and_data_invers(N);
     int k = 0;
