@@ -8,7 +8,7 @@
 
 int main()
 {
-    const int N = 64;
+    const int N = 1024;
     double *x_ = new double[N];
     double *x_invers = new double[N];
     fftw_complex *in = new fftw_complex[N];
@@ -31,7 +31,7 @@ int main()
         i++;
         count++;
     }
-    double x_in = Xmin;
+    /*double x_in = Xmin;
     int j = 0;
     while(x_in <= Xmax)
     {
@@ -45,7 +45,7 @@ int main()
         }
         j++;
         x_in += h;
-    }
+    }*/
     std::cout << count << std::endl;
     fftw_plan my_plan;
     /*my_plan = fftw_plan_r2r_1d(N, in, out, FFTW_REDFT00, FFTW_ESTIMATE);
@@ -69,7 +69,7 @@ int main()
     for(int i = 0; i < N; i++)
     {
         std::complex<double> x(out[i][0]/sqrt(2*M_PI*N), out[0][i]/sqrt(2*M_PI*N));
-        fftw_data_and_bias.push_back(x*std::exp(I*x*bias));
+        fftw_data_and_bias.push_back(x*std::exp((-1.)*I*x*bias));
     }
     std::vector<std::complex<double>> coord_and_data_invers(N);
     int k = 0;
